@@ -31,3 +31,31 @@ INNER JOIN store s on s.store_id = st.store_id
 INNER JOIN address a on s.address_id = a.address_id
 INNER JOIN city c on a.city_id = c.city_id
 INNER JOIN country cy on c.country_id = cy.country_id
+
+/*EJERCICIO 4*/
+
+SELECT f.title, max(return_date), min(return_date)
+FROM film f
+
+INNER JOIN inventory i on  i.film_id = f.film_id
+INNER JOIN rental r on i.inventory_id = r.inventory_id
+
+
+/*EJERCICIO N5 HECHO CON KAREN*/
+
+SELECT * FROM category ca
+INNER JOIN film_category fc on ca.category_id = fc.category_id
+INNER JOIN film f ON f.film_id = fc.film_id
+INNER JOIN language l on f.language_id = l.language_id
+INNER JOIN film_actor fa on  fa.film_id = fa.film_id
+INNER JOIN actor a on  fa.actor_id = a.actor_id
+INNER JOIN inventory i on f.film_id = i.film_id
+INNER JOIN film_text ft on i.film_id = ft.film_id
+INNER JOIN rental r on i.inventory_id = r.inventory_id
+INNER JOIN payment p on r.rental_id = p.rental_id
+INNER JOIN staff s on p.staff_id = s.staff_id
+INNER JOIN store st on s.store_id = st.store_id
+INNER JOIN customer cu on st.customer_id = cu.customer_id
+INNER JOIN address a on s.address_id = a.address_id
+INNER JOIN city c on a.city_id = c.city_id
+INNER JOIN country cy on c.country_id = cy.country_id
