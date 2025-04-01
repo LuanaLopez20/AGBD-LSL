@@ -1,6 +1,7 @@
 /*EJERCICIO 1*/
 
-SELECT * FROM film f
+SELECT f.title, a.address, c.city, cy.country
+FROM film f
 
 INNER JOIN inventory i on  i.film_id = f.film_id
 INNER JOIN store s on i.store_id = s.store_id
