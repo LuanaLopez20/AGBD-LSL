@@ -21,3 +21,13 @@ INNER JOIN film_category fc on f.film_id = fc.film_id
 INNER JOIN category ca on  fc.category_id = ca.category_id
 
 WHERE f.length BETWEEN 60 and 120
+
+/*EJERCICIO 3*/
+
+SELECT st.first_name, st.last_name, a.address, c.city, cy.country
+FROM staff st
+
+INNER JOIN store s on s.store_id = st.store_id
+INNER JOIN address a on s.address_id = a.address_id
+INNER JOIN city c on a.city_id = c.city_id
+INNER JOIN country cy on c.country_id = cy.country_id
