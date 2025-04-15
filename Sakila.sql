@@ -119,3 +119,88 @@ FROM film f
 INNER JOIN inventory i on f.film_id = i.film_id
 INNER JOIN rental r on i.inventory_id = r.inventory_id
 WHERE f.title = "ALABAMA DEVIL"
+
+/*EJERCICIO 13*/
+
+SELECT f.title, f.rental_duration, ca.name
+FROM category ca
+INNER JOIN film_category fc on ca.category_id = fc.category_id
+INNER JOIN film f ON f.film_id = fc.film_id
+ORDER BY rental_duration DESC;
+
+/*EJERCICIO 14*/
+
+SELECT f.title,COUNT(a.actor_id) AS actores FROM film f
+INNER JOIN film_actor fa ON f.film_id = fa.film_id
+INNER JOIN actor a ON fa.actor_id = a.actor_id
+WHERE title like "w%"
+GROUP BY f.film_id
+HAVING actores > 5
+
+/*EJERCICIO 15*/
+
+SELECT SUM(p.amount), c.first_name
+FROM customer c
+INNER JOIN payment p on c.customer_id = p.customer_id
+group by p.customer_id
+
+/*EJERCICIO 16*/
+
+SELECT f.title, f.rental_duration, a.first_name, ca.name
+FROM category ca
+INNER JOIN film_category fc on ca.category_id = fc.category_id
+INNER JOIN film f ON f.film_id = fc.film_id
+INNER JOIN film_actor fa ON f.film_id = fa.film_id
+inner join actor a on a.actor_id = fa.actor_id
+ORDER BY rental_duration ASC;
+
+/*EJERCICIO 17*/
+
+SELECT SUM(p.amount) AS total, c.last_name, a.address_id, ci.city_id, co.country_id, r.rental_id, c.customer_id
+FROM customer c
+INNER JOIN address a ON c.address_id = a.address_id
+INNER JOIN city ci ON a.city_id = ci.city_id
+INNER JOIN country co ON ci.country_id = co.country_id
+INNER JOIN rental r ON c.customer_id = r.customer_id
+INNER JOIN payment p on r.rental_id = p.rental_id
+GROUP BY p.customer_id
+ORDER BY total ASC;
+
+/*EJERCICIO 18*/
+
+INSERT INTO actor (actor_id, first_name, last_name, last_update)
+VALUES ("201", "Luana", "Lopez","2020-02-20 08:08:11")
+
+/*EJERCICIO 19*/
+
+INSERT INTO actor (actor_id, first_name, last_name, last_update)
+VALUES ("202", "Sebastian", "Troche", "2020-02-20 08:08:12")
+
+INSERT INTO actor (actor_id, first_name, last_name, last_update)
+VALUES ("203", "Adriana", "Mollano", "2020-02-20 08:08:13")
+
+/*EJERCICIO 20*/
+
+UPDATE actor 
+SET first_name = "Maria", last_name = "Becerra"
+WHERE last_name = "Lopez" AND first_name = "Luana"
+
+UPDATE actor 
+SET first_name = "Ester", last_name = "Exposito"
+WHERE last_name = "Troche" AND first_name = "Sebastian"
+
+UPDATE actor 
+SET first_name = "Mariana", last_name = "Esposito"
+WHERE last_name = "Mollano" AND first_name = "Adriana"
+
+/*EJERCICIO 21*/
+
+DELETE FROM actor
+WHERE actor_id = 201
+
+DELETE FROM actor
+WHERE actor_id = 202
+
+DELETE FROM actor
+WHERE actor_id = 203
+
